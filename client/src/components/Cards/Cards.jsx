@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllDrivers } from '../../Redux/actions';
 
-const Cards = ({inputListener}) => {
+const Cards = ({ inputListener }) => {
     const dispatch = useDispatch();
     const driversReducer = useSelector((state) => state.allDrivers);
+    const driversFilterReducer = useSelector((state) => state.filterDrivers);
     const [filteredDrivers, setFilteredDrivers] = useState(driversReducer);
 
     useEffect(() => {
@@ -15,39 +16,64 @@ const Cards = ({inputListener}) => {
     }, [dispatch]);
 
     useEffect(() => {
-        const filterCard = async () => {
+        const findByInput = async () => {
             try {
                 if (inputListener.trim() === '') {
                     setFilteredDrivers(driversReducer);
                 } else {
                     const { data } = await axios.get(`http://localhost:3001/drivers/name?name=${inputListener}`);
-                    setFilteredDrivers(data);
-                } 
+                    const updatedDrivers = data.map(driver => {
+                        const teamsArray = driver.teams ? (Array.isArray(driver.teams) ? driver.teams : [driver.teams]) : [];
+                        return {
+                            ...driver,
+                            teams: teamsArray,
+                        };
+                    });
+    
+                    setFilteredDrivers(updatedDrivers);
+                }
             } catch (error) {
-                window.alert('El driver que solicita no se encuntra en la lista')
+                window.alert('El driver que solicita no se encuentra en la lista');
+            }
+        };
+    
+        findByInput();
+    }, [inputListener, driversReducer]);
+
+    useEffect(() => {
+        const filterDrivers = () => {
+            try {
+                if (driversFilterReducer) {
+                    setFilteredDrivers(driversFilterReducer)
+                } else {
+                    setFilteredDrivers(driversReducer)
+                }
+            } catch (error) {
+                console.error('Error fetching drivers:', error);
             }
         };
 
-        filterCard();
-    }, [inputListener, driversReducer]);
+        filterDrivers();
+    }, [driversFilterReducer])
 
-    
+
 
     return (
         <div className='cards'>
-            {filteredDrivers?.map((driver) => {
-                if(typeof driver.name === 'string') {
+            {filteredDrivers.map((driver) => {
+                if (typeof driver.name === 'string') {
                     return (
                         <Card
                             key={driver.id}
                             image={driver.image}
                             id={driver.id}
                             name={driver.name}
+                            team={driver.teams.map(team => team.name)}
                         />
                     )
-                } else if (typeof driver.name === 'object'){
+                } else if (typeof driver.name === 'object') {
                     return (
-                        <Card 
+                        <Card
                             key={driver.id}
                             image={driver.image.url}
                             id={driver.id}

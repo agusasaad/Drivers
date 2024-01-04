@@ -23,13 +23,13 @@ module.exports = (sequelize) => {
       defaultValue: 'No proporciono una descripcion'
     },
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     nationality: {
       type: DataTypes.STRING,
       defaultValue: 'No proporciono una nacionalidad'
     },
-    birthdate: {
+    dob: {
       type: DataTypes.DATEONLY
     }
   }, {

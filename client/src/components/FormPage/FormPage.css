@@ -1,0 +1,9 @@
+.warning {
+    border: solid red 1px;
+}
+
+.danger {
+    font-size: 10px;
+    color: rgb(250, 3, 3);
+    margin: 5px;
+}

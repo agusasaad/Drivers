@@ -34,8 +34,8 @@ modelTeam(sequelize);
 const { Driver, Team } = sequelize.models;
 
 // Aca vendrian las relaciones
-Driver.belongsToMany(Team, { through: 'DriverTeam', timestamps: false, });
-Team.belongsToMany(Driver, { through: 'DriverTeam', timestamps: false, });
+Driver.belongsToMany(Team, { through: 'DriverTeam', as: 'teams', timestamps: false, });
+Team.belongsToMany(Driver, { through: 'DriverTeam', as: 'teams', timestamps: false, });
 
 // Product.hasMany(Reviews);
 

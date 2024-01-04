@@ -1,6 +1,7 @@
 import './HomePage.css';
 import Cards from '../Cards/Cards';
 import Filters from '../Filters/Filters';
+import ButtonCreateDriver from '../ButtonCreateDriver/ButtonCreateDriver';
 import { useState } from 'react';
 
 const HomePage = () => {
@@ -16,9 +17,9 @@ const HomePage = () => {
       <h2>HOME</h2>
       <div className="searchBar">
         <input placeholder="Search..." type="text" onChange={handleChange}/>
-        <button type="submit">Buscar</button>
       </div>
       <Filters/>
+      <ButtonCreateDriver/>
       <Cards inputListener={inputListener}/>
     </div>
   )

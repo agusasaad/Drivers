@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const DetailPage = () => {
+  const defaultPhoto = 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp';
 
   const params = useParams();
   const [driverDetail, SetDriverDetail] = useState('')
@@ -32,19 +33,19 @@ const DetailPage = () => {
           <p>ID: {params.id}</p>
           <p>Nombre: {driverDetail.name.forename}</p>
           <p>Apellido: {driverDetail.name.surname}</p>
-          <p>Nacionalidad: {driverDetail.nationality}</p>
-          <p>Descripcion: {driverDetail.description && 'Sin descripcion'}</p>
-          <p>Fecha de nacimiento: {driverDetail.dob}</p>
           <p>Team: {driverDetail.teams}</p>
+          <p>Nacionalidad: {driverDetail.nationality}</p>
+          <p>Fecha de nacimiento: {driverDetail.dob}</p>
+          <p>Descripcion: {driverDetail.description || 'Sin descripcion'}</p>
         </div>
       ) : (
         <div>
-          <img src={driverDetail.image} alt={`imagen de ${driverDetail.name}`} />
+          <img src={driverDetail.image || defaultPhoto} alt={`imagen de ${driverDetail.name}`} />
           <p>ID:{params.id}</p>
           <p>Nombre:{driverDetail.name}</p>
           <p>Apellido:{driverDetail.lastName}</p>
           <p>Nacionalidad:{driverDetail.nationality}</p>
-          <p>Fecha de nacimiento:{driverDetail.birthdate}</p>
+          <p>Fecha de nacimiento:{driverDetail.dob}</p>
           <p>Descripcion:{driverDetail.description}</p>
         </div>
       )}
