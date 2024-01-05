@@ -1,15 +1,13 @@
 import './Cards.css';
 import axios from 'axios';
 import Card from '../Card/Card';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { getAllDrivers } from '../../Redux/actions';
 
-const Cards = ({ inputListener }) => {
+const Cards = ({ inputListener, driversReducer, filteredDrivers, driversFilterReducer, setFilteredDrivers }) => {
+
     const dispatch = useDispatch();
-    const driversReducer = useSelector((state) => state.allDrivers);
-    const driversFilterReducer = useSelector((state) => state.filterDrivers);
-    const [filteredDrivers, setFilteredDrivers] = useState(driversReducer);
 
     useEffect(() => {
         dispatch(getAllDrivers());
@@ -29,14 +27,13 @@ const Cards = ({ inputListener }) => {
                             teams: teamsArray,
                         };
                     });
-    
                     setFilteredDrivers(updatedDrivers);
                 }
             } catch (error) {
                 window.alert('El driver que solicita no se encuentra en la lista');
             }
         };
-    
+
         findByInput();
     }, [inputListener, driversReducer]);
 

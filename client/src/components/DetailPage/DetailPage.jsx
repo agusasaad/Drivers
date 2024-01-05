@@ -24,6 +24,7 @@ const DetailPage = () => {
   }, [params.id])
 
 
+
   return (
     <div>
       <h1>DetailPage</h1>
@@ -44,6 +45,7 @@ const DetailPage = () => {
           <p>ID:{params.id}</p>
           <p>Nombre:{driverDetail.name}</p>
           <p>Apellido:{driverDetail.lastName}</p>
+          <p>Equipos: {driverDetail.teams && driverDetail.teams.length > 0 ? driverDetail.teams.map(team => team.name): ''}</p>
           <p>Nacionalidad:{driverDetail.nationality}</p>
           <p>Fecha de nacimiento:{driverDetail.dob}</p>
           <p>Descripcion:{driverDetail.description}</p>
