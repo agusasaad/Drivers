@@ -1,32 +1,25 @@
-const validation = (driverData) => {
-    const errors = {};
+const validation = (fieldName, value, ) => {
     const regexName = /^[a-zA-Z\s]+$/;
     const regexLastName = /^[a-zA-Z\s-]+$/;
     const regexNationality = /^[a-zA-Z]+$/;
     const regexDescripcion = /^.{1,750}$/;
     const regexDob = /^\d{4}-\d{2}-\d{2}$/;
+    const errors = {};
 
-    if (!regexName.test(driverData.name)) {
-        errors.name = 'El nombre del driver que deseas crear no puede contener caracteres especiales';
+    switch (fieldName) {
+        case 'name':
+            return regexName.test(value) ? '' : 'El nombre del driver no puede contener caracteres especiales';
+        case 'lastName':
+            return regexLastName.test(value) ? '' : 'El apellido del driver no puede contener caracteres especiales';
+        case 'description':
+            return regexDescripcion.test(value) ? '' : 'La descripción debería tener menos de 750 caracteres';
+        case 'nationality':
+            return regexNationality.test(value) ? '' : 'La nacionalidad no puede contener caracteres especiales';
+        case 'dob':
+            return regexDob.test(value) ? '' : 'Inserta una fecha válida, por ejemplo: YYYY-MM-DD';
+        default:
+            return '';
     }
-
-    if (!regexLastName.test(driverData.lastName)) {
-        errors.lastName = 'El apellido del driver que deseas crear no puede contener caracteres especiales';
-    }
-
-    if (!regexDescripcion.test(driverData.description)) {
-        errors.description = 'La descripcion deberia tener menos de 750 caracteres';
-    }
-
-    if (!regexNationality.test(driverData.nationality)) {
-        errors.nationality = 'No puede contener caracteres especiales';
-    }
-
-    if (!regexDob.test(driverData.dob)) {
-        errors.dob = 'Inserte una fecha valida, por Ejemplo: YYYY-MM-DD';
-    }
-
-    return errors;
-}
+};
 
 export default validation;

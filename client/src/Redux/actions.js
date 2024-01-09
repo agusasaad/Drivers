@@ -1,4 +1,4 @@
-import {GET_DRIVERS, GET_TEAMS,  FILTER_TEAMS, FILTER_BY_ORIGIN, FILTER_BY_ORDER, FILTER_BY_DATE} from "./action-types";
+import {GET_DRIVERS, GET_TEAMS,  FILTER_TEAMS, FILTER_BY_ORIGIN, FILTER_BY_ORDER, FILTER_BY_DATE, RESET_FILTERS} from "./action-types";
 import axios from 'axios';
 
 export const getAllDrivers = () => {
@@ -60,5 +60,12 @@ export const filterByDate = (date) => {
     return {
         type: FILTER_BY_DATE,
         payload: date
+    }
+}
+
+export const reset_filter = (reset) => {
+    return {
+        type: RESET_FILTERS,
+        payload: reset
     }
 }

@@ -3,6 +3,7 @@ const axios = require('axios')
 
 const getAllDrivers = async (req, res) => {
     try {
+
         const { data } = await axios.get('http://localhost:5000/drivers');
 
         const newDriversApi = data.map(driver => ({
@@ -23,6 +24,7 @@ const getAllDrivers = async (req, res) => {
         });
 
         const allDrivers = [...newDriversDataBase, ...newDriversApi]
+
         res.status(200).json(allDrivers);
 
     } catch (error) {

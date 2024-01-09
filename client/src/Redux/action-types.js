@@ -4,3 +4,4 @@ export const FILTER_TEAMS = 'FILTER_TEAMS';
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
 export const FILTER_BY_ORDER = 'FILTER_BY_ORDER';
 export const FILTER_BY_DATE = 'FILTER_BY_DATE';
+export const RESET_FILTERS = 'RESET_FILTERS';

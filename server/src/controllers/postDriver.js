@@ -1,19 +1,36 @@
-const { Driver} = require("../db");
+const { Driver, Team } = require("../db");
 
 const postDriver = async (req, res) => {
     try {
-    const {name, lastName, description, image, nationality, dob, teamId} = req.body; 
+        const { name, lastName, description, image, nationality, dob, teamIds } = req.body;
 
-    const newDriver = await Driver.create({name, lastName, description, image, nationality, dob})
+        const existingDriver = await Driver.findOne({
+            where: {
+                name,
+                lastName,
+            },
+        });
 
-    await newDriver.addTeam(teamId) 
+        if (existingDriver) {
+            return res.status(400).json({ message: 'Ya existe un driver con esa información' });
+        }
 
-    res.status(200).json({message: 'El driver se creó correctamente' });
+        const newDriver = await Driver.create({ name, lastName, description, image, nationality, dob });
 
+        if (teamIds && Array.isArray(teamIds)) {
+            const teams = await Team.findAll({
+                where: {
+                    id: teamIds,
+                },
+            });
+
+            await newDriver.addTeams(teams);
+        }
+
+        res.status(200).json({ message: 'El driver se creó correctamente' });
     } catch (error) {
-        res.send(error.message)
+        res.status(500).json({ error: error.message });
     }
+};
 
-}
-
-module.exports = postDriver
+module.exports = postDriver;

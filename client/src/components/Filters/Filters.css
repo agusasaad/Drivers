@@ -1,0 +1,41 @@
+.Filters {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+
+select {
+    width: 20%;
+    height: 30px;
+    background-color: rgba(240, 248, 255, 0);
+    border: 1px solid white;
+    color: white;
+    font-family:sans-serif;
+    padding: 5px;
+    font-size: 13px;
+    margin-left: 15px;
+}
+
+option {
+    color: black;
+    background-color: rgba(178, 176, 176, 0.612);
+}
+
+.button-reset {
+    width: 13%;
+    height: 30px;
+    background-color: rgba(240, 248, 255, 0);
+    border: 1px solid white;
+    margin-left: 15px;
+    color: white;
+    padding: 5px;
+    font-family:sans-serif;
+    font-size: 13px;
+}
+
+.button-reset:hover{
+    background-color: white;
+    color: black;
+}

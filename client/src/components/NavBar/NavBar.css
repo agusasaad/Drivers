@@ -1,0 +1,17 @@
+nav {
+    width: 15%;
+    height: 15%;
+    display: flex;
+    justify-content: start;
+}
+
+.logo {
+    display: flex;
+    align-content: center;
+}
+
+.logoF1 {
+    margin-left: 15px;
+    width: 150px;
+    height: 100px;
+}

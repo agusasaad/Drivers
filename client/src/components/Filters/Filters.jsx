@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllTeams, filterTeams, filterByOrigin, filterByOrder, filterByDate } from '../../Redux/actions';
+import { getAllTeams, filterTeams, filterByOrigin, filterByOrder, filterByDate, reset_filter } from '../../Redux/actions';
+import './Filters.css'
 
 const Filters = () => {
 
@@ -24,31 +25,32 @@ const Filters = () => {
     const handleOrderDate = event => {
         dispatch(filterByDate(event.target.value))
     }
+    const handleResetFilters = event => {
+        dispatch(reset_filter(event.target.value))
+    }
     return (
-        <div>
-            <label>Team</label>
-            <select name="Teams" id="teamSelect" onChange={handleTeams} defaultValue="All Teams">
-                <option className='option' value='All Teams'>All Teams</option>
-                {teamsReducer.map((team) => (
-                    <option key={team.id} className='option' value={team.name}>{team.name}</option>
-                ))}
-            </select>
-            <label >Origin</label>
-            <select name="DB_And_Api" onChange={handleOrigin}>
+        <div className='Filters'>
+            <select name="DB_And_Api" onChange={handleOrigin} defaultValue=''>
+                <option className='option' value="" disabled> Seleccione un origen</option>
                 <option className='option' value='All Origins'>All Origins</option>
                 <option className='option' value="DataBase">Data Base</option>
                 <option className='option' value="Api">Api</option>
             </select>
-            <label >A-Z</label>
+            <select name="Teams" id="teamSelect" onChange={handleTeams} defaultValue=''>
+                <option className='option' value="" disabled> Seleccione un equipo</option>
+                {teamsReducer.map((team) => (
+                    <option key={team.id} className='option' value={team.name}>{team.name}</option>
+                ))}
+            </select>
             <select name="Alfabetico" onChange={handleOrder}>
                 <option className='option' value="A-Z">A-Z</option>
                 <option className='option' value="Z-A">Z-A</option>
             </select>
-            <label >Date</label>
             <select name="Date" onChange={handleOrderDate}>
                 <option className='option' value="Ascendente">Ascendente</option>
                 <option className='option' value="Descendente">Descendente</option>
             </select>
+            <button className='button-reset' onClick={handleResetFilters}>Reset Filters</button>
         </div>
     )
 }

@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const FormPage = () => {
   const navigate = useNavigate()
 
-  const [error, SetError] = useState({})
+  const [error, setError] = useState({})
   const [driverData, setDriverData] = useState({
     name: "",
     lastName: "",
@@ -17,25 +17,38 @@ const FormPage = () => {
     image: "",
     nationality: "",
     dob: "",
-    teamId: ""
+    teamIds: []
   })
-
+  
   const handleChange = (event) => {
-    setDriverData({
-      ...driverData,
-      [event.target.name]: event.target.value
-    })
-    SetError(validation({
-      ...driverData,
-      [event.target.name]: event.target.value
-    }))
-  }
-
+    const { name, value, type, options } = event.target;
+  
+    if (options) {
+      const selectedOptions = Array.from(options)
+        .filter((option) => option.selected)
+        .map((option) => option.value);
+  
+      setDriverData({
+        ...driverData,
+        [name]: type === 'select-multiple' ? selectedOptions.map(Number) : value,
+      });
+    } else {
+      setDriverData({
+        ...driverData,
+        [name]: type === 'select-multiple' ? [] : value,
+      });
+    }
+  
+    setError({
+      ...error,
+      [name]: validation(name, value),
+    });
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const validationErrors = validation(driverData);
-    SetError(validationErrors);
+    setError(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
       return;
@@ -60,8 +73,8 @@ const FormPage = () => {
 
 
 
-    } catch (error) {
-      console.error('Error al enviar la solicitud:', error.message);
+    } catch (data) {
+      window.alert(`Error al enviar la solicitud: ${data.message}`);
     }
 
   }
@@ -73,7 +86,7 @@ const FormPage = () => {
     dispatch(getAllTeams());
   }, [dispatch]);
 
-
+  const todosCamposLlenos = Object.values(driverData).every((valor) => valor !== '')
 
   return (
     <form onSubmit={handleSubmit}>
@@ -152,9 +165,11 @@ const FormPage = () => {
         <label htmlFor="cars">Teams:</label>
         <select
           id="cars"
-          name="teamId"
-          value={driverData.teamId}
+          name="teamIds"
+          value={driverData.teamIds}
           onChange={handleChange}
+          multiple
+          className={error.teamIds && 'warning'}
         >
           <option value="" disabled>
             Seleccione un equipo
@@ -166,7 +181,8 @@ const FormPage = () => {
           ))}
         </select>
       </div>
-      <button type="submit">Enviar</button>
+      <p className='danger'>{error.nationality}</p>
+      <button type="submit" disabled={!todosCamposLlenos}>Enviar</button>
     </form>
   )
 }

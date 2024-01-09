@@ -1,4 +1,4 @@
-import { FILTER_TEAMS, GET_DRIVERS, GET_TEAMS, FILTER_BY_ORIGIN, FILTER_BY_ORDER, FILTER_BY_DATE } from "./action-types";
+import { FILTER_TEAMS, GET_DRIVERS, GET_TEAMS, FILTER_BY_ORIGIN, FILTER_BY_ORDER, FILTER_BY_DATE, RESET_FILTERS } from "./action-types";
 
 const initialState = {
     allDrivers: [],
@@ -11,55 +11,46 @@ const reducer = (state = initialState, action) => {
         case GET_DRIVERS:
             return {
                 ...state,
-                allDrivers: action.payload
+                allDrivers: action.payload,
+                filterDrivers: action.payload
             }
         case GET_TEAMS:
             return {
                 ...state,
                 allTeams: action.payload
             }
-        case FILTER_TEAMS:
-            if (action.payload === 'All Teams') {
-                return {
-                    ...state,
-                    filterDrivers: state.allDrivers
-                };
-            } else {
-                const filteredDrivers = state.allDrivers.filter(driver => {
-                    if (Array.isArray(driver.teams)) {
-                        return driver.teams[0].name.toLowerCase().includes(action.payload);
-                    } else if (typeof driver.teams === 'string') {
-                        const teamsArray = driver.teams.split(',').map(team => team.trim().toLowerCase());
-                        return teamsArray.includes(action.payload);
-                    }
-                });
 
-                return {
-                    ...state,
-                    filterDrivers: filteredDrivers
-                };
-            }
         case FILTER_BY_ORIGIN:
-            if (action.payload === 'All Origins') {
-                return {
-                    ...state,
-                    filterDrivers: state.allDrivers
+            const filterByOrigin = state.allDrivers.filter((origin) => {
+                if (action.payload === 'All Origins') {
+                    return origin
+                } else if (action.payload === 'DataBase') {
+                    return typeof origin.name === 'string'
+                } else {
+                    return typeof origin.name === 'object'
                 }
-            } else if (action.payload === 'DataBase') {
-                const filterByDB = state.allDrivers.filter((driver) => typeof driver.name === 'string')
-                return {
-                    ...state,
-                    filterDrivers: filterByDB
+            })
+            return {
+                ...state,
+                filterDrivers: filterByOrigin
+            }
+
+        case FILTER_TEAMS:
+            const filteredDrivers = state.filterDrivers.filter(driver => {
+                if (Array.isArray(driver.teams)) {
+                    return driver.teams.some(team => team.name.toLowerCase().includes(action.payload));
+                } else if (typeof driver.teams === 'string') {
+                    const teamsArray = driver.teams.split(',').map(team => team.trim().toLowerCase());
+                    return teamsArray.includes(action.payload);
                 }
-            } else {
-                const filterByApi = state.allDrivers.filter((driver) => typeof driver.name === 'object')
-                return {
-                    ...state,
-                    filterDrivers: filterByApi
-                }
+            });
+
+            return {
+                ...state,
+                filterDrivers: filteredDrivers
             }
         case FILTER_BY_ORDER:
-            const orderCopy = [...state.allDrivers];
+            const orderCopy = [...state.filterDrivers];
 
             let sortedDrivers
 
@@ -76,14 +67,13 @@ const reducer = (state = initialState, action) => {
                     return nameB.localeCompare(nameA);
                 })
             }
-
             return {
                 ...state,
                 filterDrivers: sortedDrivers
             }
 
         case FILTER_BY_DATE:
-            const orderDateCopy = [...state.allDrivers]
+            const orderDateCopy = [...state.filterDrivers]
 
             let sortedDriversDate;
 
@@ -96,6 +86,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 filterDrivers: sortedDriversDate
+            }
+        case RESET_FILTERS:
+            return {
+                ...state,
+                filterDrivers: state.allDrivers
             }
         default:
             return {

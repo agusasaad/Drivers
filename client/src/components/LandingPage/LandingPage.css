@@ -1,0 +1,33 @@
+.Landing_page {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../../public/img/Fondo\ F1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.conteiner-title {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.img_title {
+    width: 608px;
+    height: 250px;
+}
+
+.button-landing-page {
+    width: 80%;
+    height: 50px;
+    margin: 30px;
+    background-color: rgba(240, 248, 255, 0);
+    border: 1px solid white;
+    color: white;
+    font-size: 20px;
+}
+
+

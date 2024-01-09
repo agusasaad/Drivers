@@ -1,0 +1,35 @@
+.Home_Page {
+    width: 100%;
+    height: max-content;
+    background-image: url('../../../public/img/fondoCards.png');
+    background-size: cover;
+}
+
+.controllers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.searchBar {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.input-serach {
+    width: 96%;
+    height: 30px;
+    background-color: rgba(231, 227, 227, 0);
+    border: 1px solid white;
+    padding: 5px;
+    color: white;
+}
+
+.input-serach::placeholder {
+    color: #ffffff9a;
+    /* Por ejemplo, cambia el color a rojo */
+}

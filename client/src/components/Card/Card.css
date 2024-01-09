@@ -1,5 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Nunito&family=Quicksand:wght@500&family=Roboto:wght@300&display=swap');
+
 .card {
-    width: 250px;
+    width: 260px;
+    height: 420px;
     margin: 10px;
-    text-align: center;
+    background: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.imgCard {
+    width: 260px;
+    height: 260px;
+}
+
+.conteiner-img {
+    position: relative;
+}
+
+.degradado-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.208), rgb(1, 1, 1));
+}
+
+.info-card {
+    margin-left: 12px;
+    padding: 5px;
+    color: rgb(236, 234, 234);
+    font-family: 'MagistralCondW08-Medium';
+    font-size: 20px;
+    letter-spacing: 1px;
+    display: flex;
+    display: grid;
+    grid-template-columns: auto auto ;
+} 
+
+.info-card > h4 {
+    margin: 5px;
+    font-size: 25px;
+    text-align: end;
+
+}
+
+.info-card > .teams {
+    font-size: 9px;
+    height: 23px;
+}
+
+.line {
+    border-top: 1px solid white;
+    width: 90%;
+    margin: 0 auto;
+    margin-top:5px;
+}
+
+.nationality-iconF {
+    margin: 5px auto;
+    width: 90%;
+    color: rgb(158, 156, 156);
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+.Title_nationality {
+    font-family: 'MagistralCondW08-Medium';
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 5px;
+}
+
+.valor-nationality {
+    font-family: 'MagistralCondW08-Medium';
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 5px;
+    color: brown;
 }

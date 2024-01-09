@@ -1,0 +1,27 @@
+
+.container-button {
+    width: 6%;
+    display: flex;
+    align-items: center;
+
+}
+
+
+.Button-create {
+    height: 30px;
+    width: 90%;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0);
+}
+.Button-create > .NavLink-button {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-react {
+    font-size: 20px;
+    margin-left: 5px;
+}
