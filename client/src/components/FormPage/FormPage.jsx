@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTeams } from '../../Redux/actions';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar.jsx';
 
 const FormPage = () => {
   const navigate = useNavigate()
@@ -19,15 +20,14 @@ const FormPage = () => {
     dob: "",
     teamIds: []
   })
-  
+
   const handleChange = (event) => {
     const { name, value, type, options } = event.target;
-  
     if (options) {
       const selectedOptions = Array.from(options)
         .filter((option) => option.selected)
         .map((option) => option.value);
-  
+
       setDriverData({
         ...driverData,
         [name]: type === 'select-multiple' ? selectedOptions.map(Number) : value,
@@ -38,7 +38,7 @@ const FormPage = () => {
         [name]: type === 'select-multiple' ? [] : value,
       });
     }
-  
+
     setError({
       ...error,
       [name]: validation(name, value),
@@ -88,102 +88,141 @@ const FormPage = () => {
 
   const todosCamposLlenos = Object.values(driverData).every((valor) => valor !== '')
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Nombre:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={driverData.name}
-          onChange={handleChange}
-          className={error.name && 'warning'}
-        />
-      </div>
-      <p className='danger'>{error.name}</p>
-      <div>
-        <label htmlFor="lastName">Apellido:</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={driverData.lastName}
-          onChange={handleChange}
-          className={error.lastName && 'warning'}
-        />
-      </div>
-      <p className='danger'>{error.lastName}</p>
-      <div>
-        <label htmlFor="description">Descripción:</label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          value={driverData.description}
-          onChange={handleChange}
-          className={error.description && 'warning'}
-        />
-      </div>
-      <p className='danger'>{error.description}</p>
-      <div>
-        <label htmlFor="image">Imagen (URL):</label>
-        <input
-          type="text"
-          id="image"
-          name="image"
-          value={driverData.image}
-          onChange={handleChange}
-        />
-      </div>
+  const backToHome = () => {
+    navigate('/home')
+  }
 
-      <div>
-        <label htmlFor="nationality">Nacionalidad:</label>
-        <input
-          type="text"
-          id="nationality"
-          name="nationality"
-          value={driverData.nationality}
-          onChange={handleChange}
-          className={error.nationality && 'warning'}
-        />
+  return (
+    <div className='conteiner-form'>
+      <div className="navbar-nav">
+        <NavBar />
       </div>
-      <p className='danger'>{error.nationality}</p>
-      <div>
-        <label htmlFor="dob">Fecha de nacimiento:</label>
-        <input
-          type="text"
-          id="dob"
-          name="dob"
-          value={driverData.dob}
-          onChange={handleChange}
-          className={error.dob && 'warning'}
-        />
-      </div>
-      <p className='danger'>{error.dob}</p>
-      <div>
-        <label htmlFor="cars">Teams:</label>
-        <select
-          id="cars"
-          name="teamIds"
-          value={driverData.teamIds}
-          onChange={handleChange}
-          multiple
-          className={error.teamIds && 'warning'}
-        >
-          <option value="" disabled>
-            Seleccione un equipo
-          </option>
-          {teamsReducer.map((team) => (
-            <option key={team.id} value={team.id}>
-              {team.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <p className='danger'>{error.nationality}</p>
-      <button type="submit" disabled={!todosCamposLlenos}>Enviar</button>
-    </form>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className="esc">
+          <button onClick={backToHome} className='button-esc'>X</button>
+        </div>
+        <h2 className="title-create-driver">Create Driver</h2>
+        {/* Nombre y Apellido */}
+        <div className="name-lastName">
+          <div className='FormGroup'>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={driverData.name}
+              onChange={handleChange}
+              autocomplete="off"
+              className={error.name && 'warning'}
+            />
+            <p className='danger'>{error.name}</p>
+          </div>
+          <div className='FormGroup'>
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={driverData.lastName}
+              onChange={handleChange}
+              autocomplete="off"
+              className={error.lastName && 'warning'}
+            />
+            <p className='danger'>{error.lastName}</p>
+          </div>
+        </div>
+        {/* Description AND URL */}
+        <div className="description-url">
+          <div className='textArea'>
+            <label htmlFor="description">Description:</label>
+            <textarea
+              type="text"
+              id="description"
+              name="description"
+              value={driverData.description}
+              onChange={handleChange}
+              autocomplete="off"
+              className={error.description && 'warning'}
+            />
+          </div>
+          <p className='danger'>{error.description}</p>
+          <div className='FormGroup'>
+            <label htmlFor="image">Image (URL):</label>
+            <input
+              type="text"
+              id="image"
+              name="image"
+              value={driverData.image}
+              autocomplete="off"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        {/* Nationality AND birthdate */}
+        <div className="nationality-birthdate">
+          <div className='FormGroup'>
+            <label htmlFor="nationality">Nationality:</label>
+            <input
+              type="text"
+              id="nationality"
+              name="nationality"
+              value={driverData.nationality}
+              onChange={handleChange}
+              autocomplete="off"
+              className={error.nationality && 'warning'}
+            />
+            <p className='danger'>{error.nationality}</p>
+          </div>
+          <div className='FormGroup'>
+            <label htmlFor="dob">Date Of Birth:</label>
+            <input
+              type="text"
+              id="dob"
+              name="dob"
+              value={driverData.dob}
+              onChange={handleChange}
+              autocomplete="off"
+              className={error.dob && 'warning'}
+            />
+            <p className='danger'>{error.dob}</p>
+          </div>
+        </div>
+        {/* Teams AND selected */}
+        <div className="teams-selected">
+          <div className='selectGroup'>
+            <label htmlFor="cars">Teams:</label>
+            <select
+              id="team"
+              name="teamIds"
+              value={driverData.teamIds}
+              onChange={handleChange}
+              multiple
+              className={error.teamIds && 'warning'}>
+              <option className='option-team' value="" disabled>
+                Seleccione un equipo
+              </option>
+              {teamsReducer.map((team) => (
+                <option className='option-team' key={team.id} value={team.id}>
+                  {team.name}
+                </option>
+              ))}
+            </select>
+            <div className="selectedAndLine">
+              <label>Teams selected:</label>
+              <div className='selected'>
+                {driverData.teamIds.map(select => {
+                  const selected = teamsReducer.find(element => element.id === select);
+                  if (selected) {
+                    return <span className='span-selected' key={select}>{selected.name}</span>;
+                  }
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+        <button className='form-submit' type="submit" disabled={!todosCamposLlenos}>Create</button>
+      </form>
+    </div>
   )
 }
 

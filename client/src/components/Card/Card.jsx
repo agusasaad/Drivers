@@ -2,6 +2,7 @@ import './Card.css';
 import { useNavigate } from 'react-router-dom'
 
 const Card = ({ id, image, name, surname, team, number, nationality, code }) => {
+    const numeroRandom = (Math.floor(Math.random() * 100) + 1).toString();
     const defaultPhoto = 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp';
     const navigate = useNavigate()
 

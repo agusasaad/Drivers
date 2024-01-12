@@ -12,9 +12,9 @@ const getDriverById = async (req, res) => {
             return res.status(404).json({ error: 'Driver no encontrado en la API.' });
         }
 
-        const {name, lastName, nationality, birthdate, image, description, dob, teams } = filterByApi;
+        const {name, lastName, nationality, birthdate, image, description, dob, teams, number, driverRef, code, url } = filterByApi;
 
-        res.json({name, lastName, nationality, birthdate, image, description, dob, teams })
+        res.json({name, lastName, nationality, birthdate, image, description, dob, teams, number, driverRef, code, url })
         
     } catch (error) {
         res.status(500).json({ message: error.message })

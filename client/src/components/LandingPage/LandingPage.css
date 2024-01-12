@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 .Landing_page {
     width: 100%;
     height: 100vh;
@@ -8,26 +9,37 @@
 
 .conteiner-title {
     width: 50%;
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 60px;
+    justify-content: center;
+    padding-left: 50px;
 }
 
 .img_title {
-    width: 608px;
-    height: 250px;
+    width: 600PX;
+    height: 190PX;
+    margin-bottom: 5px;
+}
+
+.descriptionPage{
+    color: white;
+    width: 70%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    text-align: start;
+    margin-bottom: 10px;
 }
 
 .button-landing-page {
-    width: 80%;
-    height: 50px;
-    margin: 30px;
+    width: 60%;
+    height: 45px;
     background-color: rgba(240, 248, 255, 0);
-    border: 1px solid white;
+    border: 1px solid rgb(255, 255, 255);
     color: white;
-    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    cursor: pointer;
 }
 
 

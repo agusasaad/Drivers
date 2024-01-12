@@ -1,14 +1,17 @@
 import './DetailPage.css';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { IoMdArrowBack } from "react-icons/io";
 
 const DetailPage = () => {
   const defaultPhoto = 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp';
-
+  const navigate = useNavigate()
+  const backToHome = () => {
+    navigate('/home')
+  }
   const params = useParams();
   const [driverDetail, SetDriverDetail] = useState('')
-
   useEffect(() => {
     const detailId = async () => {
       try {
@@ -26,29 +29,69 @@ const DetailPage = () => {
 
 
   return (
-    <div>
-      <h1>DetailPage</h1>
+    <div className='Conteiner-detail'>
       {typeof driverDetail.name === 'object' ? (
-        <div>
-          <img src={driverDetail.image.url} alt={`imagen de ${driverDetail.name.forename}`} />
-          <p>ID: {params.id}</p>
-          <p>Nombre: {driverDetail.name.forename}</p>
-          <p>Apellido: {driverDetail.name.surname}</p>
-          <p>Team: {driverDetail.teams}</p>
-          <p>Nacionalidad: {driverDetail.nationality}</p>
-          <p>Fecha de nacimiento: {driverDetail.dob}</p>
-          <p>Descripcion: {driverDetail.description || 'Sin descripcion'}</p>
+        <div className='conteiner-card'>
+          <img style={{ width: '290px', height: '280px' }} src={driverDetail.image.url} alt={`imagen de ${driverDetail.name.forename}`} />
+          <section className='section-1'>
+            <h2 className='h2-detail'>{driverDetail.name.forename}<br /> {driverDetail.name.surname}</h2>
+            <span className='span-detail'>{driverDetail.teams}</span>
+            <p className='p-detail'>driverRef: "{driverDetail.driverRef}"</p>
+            <p className='p-code'>Code: "{driverDetail.code}"</p>
+          </section>
+          <section className='section-2'>
+            <span className='p-detail'>Nationality</span>
+            <p className='p-detail-section-2'>{driverDetail.nationality}</p>
+          </section>
+          <section className='section-3'>
+            <span className='p-detail'>birthdate</span>
+            <p className='p-detail-section-2'>{driverDetail.dob}</p>
+          </section>
+          <section className='section-4'>
+            <span className='p-detail'>Number</span>
+            <p className='p-id'>{driverDetail.number}</p>
+          </section>
+          <section className='section-5'>
+            <h5>Description</h5>
+          </section>
+          <section className='section-6'>
+            <p>{driverDetail.description || 'No description...'} <Link className='moreInfo' to={driverDetail.url}>More Info</Link></p>
+          </section>
+          <section className='section-7'>
+            <span>ID: {params.id}</span>
+            <button onClick={backToHome} className='backToHome'> <IoMdArrowBack />Back To Home</button>
+          </section>
         </div>
       ) : (
-        <div>
-          <img src={driverDetail.image || defaultPhoto} alt={`imagen de ${driverDetail.name}`} />
-          <p>ID:{params.id}</p>
-          <p>Nombre:{driverDetail.name}</p>
-          <p>Apellido:{driverDetail.lastName}</p>
-          <p>team: {driverDetail.teams && driverDetail.teams.length > 0 ? driverDetail.teams.map(team => team.name).join(', '): ''}</p>
-          <p>Nacionalidad:{driverDetail.nationality}</p>
-          <p>Fecha de nacimiento:{driverDetail.dob}</p>
-          <p>Descripcion:{driverDetail.description}</p>
+        <div className='conteiner-card'>
+          <img style={{ width: '290px', height: '280px' }} src={driverDetail.image || defaultPhoto} alt={`imagen de ${driverDetail.name}`} />
+          <section className='section-1'>
+            <h2 className='h2-detail'>{driverDetail.name}<br /> {driverDetail.lastName}</h2>
+            <span className='span-detail'>{driverDetail.teams && driverDetail.teams.length > 0 ? driverDetail.teams.map(team => team.name).join(', ') : ''}</span>
+            <p className='p-detail'>driverRef: "{driverDetail.lastName}"</p>
+            <p className='p-code'>Code: "{driverDetail.code || 'no code'}"</p>
+          </section>
+          <section className='section-2'>
+            <span className='p-detail'>Nationality</span>
+            <p className='p-detail-section-2'>{driverDetail.nationality}</p>
+          </section>
+          <section className='section-3'>
+            <span className='p-detail'>birthdate</span>
+            <p className='p-detail-section-2'>{driverDetail.dob}</p>
+          </section>
+          <section className='section-4'>
+            <span className='p-detail'>Number</span>
+            <p className='p-id'>{driverDetail.number || '17'}</p>
+          </section>
+          <section className='section-5'>
+            <h5>Description</h5>
+          </section>
+          <section className='section-6'>
+            <p>{driverDetail.description}</p>
+          </section>
+          <section className='section-7'>
+            <span className='span-id'>ID: {params.id}</span>
+          </section>
         </div>
       )}
     </div>

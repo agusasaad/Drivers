@@ -39,8 +39,12 @@ const HomePage = () => {
         <Filters />
         <ButtonCreateDriver />
         <div className="searchBar">
-        <input className='input-serach' title='Search Driver By Name' placeholder="Search Drivers..." type="text" onChange={handleChange} />
-      </div>
+          <input className='input-serach'
+            title='Search Driver By Name'
+            placeholder="Search Drivers..."
+            type="text"
+            onChange={handleChange} />
+        </div>
       </div>
       <Cards
         inputListener={inputListener}

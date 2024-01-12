@@ -7,14 +7,14 @@
 }
 
 select {
-    width: 20%;
+    width: 40%;
     height: 30px;
     background-color: rgba(240, 248, 255, 0);
     border: 1px solid white;
     color: white;
-    font-family:sans-serif;
+    font-family: 'Montserrat', sans-serif;
     padding: 5px;
-    font-size: 13px;
+    font-size: 15px;
     margin-left: 15px;
 }
 
@@ -24,14 +24,14 @@ option {
 }
 
 .button-reset {
-    width: 13%;
+    width: 20%;
     height: 30px;
     background-color: rgba(240, 248, 255, 0);
     border: 1px solid white;
     margin-left: 15px;
     color: white;
     padding: 5px;
-    font-family:sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 13px;
 }
 

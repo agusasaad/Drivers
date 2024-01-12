@@ -1,9 +1,242 @@
+.conteiner-form {
+    background-image: url('../../../public/img/fondo-form.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: max-content;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+.form {
+    background-color: #1f1f1fcc;
+    border-radius: 15px;
+    width: 50%;
+    height: max-content;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.esc {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.esc .button-esc {
+    width: 50px;
+    height: 50px;
+    background-color: #3498db00;
+    border-radius: 50%;
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #414141;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.title-create-driver {
+    width: 100%;
+    text-align: center;
+    margin: 20px;
+    padding: 15px;
+    color: white;
+    font-size: 50px;
+}
+
+.FormGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+}
+
+.form .name-lastName {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-lastName label {
+    display: block;
+    margin-bottom: 5px;
+    color: #717171;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.name-lastName input {
+    width: 99%;
+    height: 20px;
+    padding: 12px 16px;
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #414141;
+}
+
+.form .description-url {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.description-url label {
+    display: block;
+    margin-bottom: 5px;
+    color: #717171;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.description-url input {
+    width: 100%;
+    height: 20px;
+    padding: 12px 16px;
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #414141;
+}
+
+.description-url .textArea {
+    width: 100%;
+}
+
+.description-url textArea {
+    width: 100%;
+    height: 100px;
+    padding: 12px 16px;
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #414141;
+}
+
+.form .nationality-birthdate {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nationality-birthdate label {
+    display: block;
+    margin-bottom: 5px;
+    color: #717171;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.nationality-birthdate input {
+    width: 99%;
+    height: 20px;
+    padding: 12px 16px;
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #414141;
+}
+
+.form .teams-selected {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.teams-selected label {
+    display: block;
+    margin-bottom: 5px;
+    color: #717171;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.selectGroup #team {
+    margin: 0;
+    width: 100%;
+    height: 30vh;
+    border: 1px solid rgba(124, 121, 121, 0.521);
+}
+
+.selectGroup .option-team {
+    color: #999898;
+    font-size: 13px;
+}
+
+.selected {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+.selected .span-selected {
+    font-size: 12px;
+    border-radius: 10px;
+    width: max-content;
+    height: max-content;
+    color: rgb(199, 192, 192);
+    text-align: center;
+    margin: 5px;
+    background-color: brown;
+    padding: 8px;
+}
+
+.option-team {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.selectedAndLine {
+    text-align: center;
+    width: 100%;
+    height: max-content;
+    margin-top: 10px;
+}
+
+.form-submit {
+    width: 25%;
+    padding: 10px;
+    font-size: 13px;
+    color: white;
+}
+
+
 .warning {
     border: solid red 1px;
 }
 
 .danger {
     font-size: 10px;
-    color: rgb(250, 3, 3);
+    color: rgb(192, 47, 47);
     margin: 5px;
 }

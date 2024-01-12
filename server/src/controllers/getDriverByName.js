@@ -24,7 +24,7 @@ const getDriverByName = async (req, res) => {
 
         const allDrivers = [...firstsNamesByDB, ...firstsNamesByApi].slice(0, 15)
 
-        if (allDrivers.length === 0) return res.status(404).json({ message: 'no se encontro ningun drivers con ese nombre' })
+        if (allDrivers.length === 0) return res.status(404).send('Nose encontro un nigun driver con ese nombre')
 
         res.status(200).json(allDrivers)
 
