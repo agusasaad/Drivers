@@ -23,27 +23,21 @@ const FormPage = () => {
 
   const handleChange = (event) => {
     const { name, value, type, options } = event.target;
-    if (options) {
-      const selectedOptions = Array.from(options)
-        .filter((option) => option.selected)
-        .map((option) => option.value);
-
-      setDriverData({
-        ...driverData,
-        [name]: type === 'select-multiple' ? selectedOptions.map(Number) : value,
-      });
-    } else {
-      setDriverData({
-        ...driverData,
-        [name]: type === 'select-multiple' ? [] : value,
-      });
-    }
-
+  
+    const selectedOptions = options ? Array.from(options).filter((option) => option.selected).map((option) => option.value): [];
+  
+    setDriverData({
+      ...driverData,
+      [name]: type === 'select-multiple' ? selectedOptions.map(Number) : value,
+    });
+  
     setError({
       ...error,
       [name]: validation(name, value),
-    });
-  };
+    })
+  }
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -70,9 +64,6 @@ const FormPage = () => {
       navigate('/home')
 
       window.alert(`Respuesta del servidor: ${data.message}`);
-
-
-
     } catch (data) {
       window.alert(`Error al enviar la solicitud: ${data.message}`);
     }
@@ -181,7 +172,7 @@ const FormPage = () => {
               name="dob"
               value={driverData.dob}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               className={error.dob && 'warning'}
             />
             <p className='danger'>{error.dob}</p>
@@ -199,7 +190,7 @@ const FormPage = () => {
               multiple
               className={error.teamIds && 'warning'}>
               <option className='option-team' value="" disabled>
-                Seleccione un equipo
+                Selected Teams:
               </option>
               {teamsReducer.map((team) => (
                 <option className='option-team' key={team.id} value={team.id}>
@@ -207,8 +198,9 @@ const FormPage = () => {
                 </option>
               ))}
             </select>
+            <p className='danger'>{error.teamIds}</p>
             <div className="selectedAndLine">
-              <label>Teams selected:</label>
+              <label>Selected Teams:</label>
               <div className='selected'>
                 {driverData.teamIds.map(select => {
                   const selected = teamsReducer.find(element => element.id === select);
@@ -220,10 +212,10 @@ const FormPage = () => {
             </div>
           </div>
         </div>
-        <button className='form-submit' type="submit" disabled={!todosCamposLlenos}>Create</button>
+        <button className={`form-submit ${todosCamposLlenos ? 'enabled' : ''}`} type="submit" disabled={!todosCamposLlenos}>Create</button>
       </form>
     </div>
   )
 }
 
-export default FormPage
+export default FormPage 

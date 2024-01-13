@@ -12,11 +12,13 @@ const validation = (fieldName, value, ) => {
         case 'lastName':
             return regexLastName.test(value) ? '' : 'El apellido del driver no puede contener caracteres especiales';
         case 'description':
-            return regexDescripcion.test(value) ? '' : 'La descripción debería tener menos de 750 caracteres';
+            return regexDescripcion.test(value) ? '' : 'La descripción debe tener menos de 750 caracteres';
         case 'nationality':
             return regexNationality.test(value) ? '' : 'La nacionalidad no puede contener caracteres especiales';
         case 'dob':
             return regexDob.test(value) ? '' : 'Inserta una fecha válida, por ejemplo: YYYY-MM-DD';
+        case 'teamIds':
+            return value.length > 0 ? '' : 'Debe seleccionar al menos un equipo';
         default:
             return '';
     }

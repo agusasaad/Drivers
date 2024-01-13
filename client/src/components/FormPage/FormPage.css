@@ -228,6 +228,13 @@
     padding: 10px;
     font-size: 13px;
     color: white;
+    cursor: pointer;
+    background-color: #6d6b6b;
+    border: none;
+}
+
+.form-submit.enabled {
+    background-color: brown;
 }
 
 

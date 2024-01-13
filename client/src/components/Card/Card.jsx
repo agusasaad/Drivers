@@ -14,7 +14,7 @@ const Card = ({ id, image, name, surname, team, number, nationality, code }) => 
         <div className='card' key={id} onClick={navigateToDetail}>
             <div className='conteiner-img'>
                 <div className='degradado-div'></div>
-                <img className='imgCard' src={image || defaultPhoto} alt={name} />
+                <img className='imgCard' src={image} alt={name} />
             </div>
             <div className='info-card'>
                 <h3>{name.toUpperCase()} <br />{surname.toUpperCase()}</h3>
