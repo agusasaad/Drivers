@@ -216,11 +216,19 @@
     color: white;
 }
 
-.selectedAndLine {
+.selectedAndButton {
     text-align: center;
     width: 100%;
     height: max-content;
     margin-top: 10px;
+}
+
+.selectedAndButton .deleteTeam {
+    color: #717171;
+    background-color: #1f1f1f00;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
 }
 
 .form-submit {

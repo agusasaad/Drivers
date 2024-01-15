@@ -91,6 +91,7 @@ const DetailPage = () => {
           </section>
           <section className='section-7'>
             <span className='span-id'>ID: {params.id}</span>
+            <button onClick={backToHome} className='backToHome'> <IoMdArrowBack />Back To Home</button>
           </section>
         </div>
       )}

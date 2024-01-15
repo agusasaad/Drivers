@@ -21,6 +21,7 @@ const reducer = (state = initialState, action) => {
             }
 
         case FILTER_BY_ORIGIN:
+            const originCopy = [...state.filterDrivers]
             const filterByOrigin = state.allDrivers.filter((origin) => {
                 if (action.payload === 'All Origins') {
                     return origin
@@ -36,7 +37,9 @@ const reducer = (state = initialState, action) => {
             }
 
         case FILTER_TEAMS:
-            const filteredDrivers = state.filterDrivers.filter(driver => {
+            const teamsCopy = [...state.filterDrivers]
+
+            const filteredDrivers = teamsCopy.filter(driver => {
                 if (Array.isArray(driver.teams)) {
                     return driver.teams.some(team => team.name.toLowerCase().includes(action.payload));
                 } else if (typeof driver.teams === 'string') {

@@ -23,14 +23,14 @@ const FormPage = () => {
 
   const handleChange = (event) => {
     const { name, value, type, options } = event.target;
-  
-    const selectedOptions = options ? Array.from(options).filter((option) => option.selected).map((option) => option.value): [];
-  
+
+    const selectedOptions = options ? Array.from(options).filter((option) => option.selected).map((option) => option.value) : [];
+
     setDriverData({
       ...driverData,
       [name]: type === 'select-multiple' ? selectedOptions.map(Number) : value,
     });
-  
+
     setError({
       ...error,
       [name]: validation(name, value),
@@ -83,6 +83,13 @@ const FormPage = () => {
     navigate('/home')
   }
 
+  const deleteTeam = (teamIdToDelete) => {
+    setDriverData((prevData) => ({
+      ...prevData,
+      teamIds: prevData.teamIds.filter((teamId) => teamId !== teamIdToDelete),
+    }));
+  };
+
   return (
     <div className='conteiner-form'>
       <div className="navbar-nav">
@@ -90,7 +97,7 @@ const FormPage = () => {
       </div>
       <form className='form' onSubmit={handleSubmit}>
         <div className="esc">
-          <button onClick={backToHome} className='button-esc'>X</button>
+          <button onClick={backToHome} title='Exit' className='button-esc'>X</button>
         </div>
         <h2 className="title-create-driver">Create Driver</h2>
         {/* Nombre y Apellido */}
@@ -103,7 +110,7 @@ const FormPage = () => {
               name="name"
               value={driverData.name}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               className={error.name && 'warning'}
             />
             <p className='danger'>{error.name}</p>
@@ -116,7 +123,7 @@ const FormPage = () => {
               name="lastName"
               value={driverData.lastName}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               className={error.lastName && 'warning'}
             />
             <p className='danger'>{error.lastName}</p>
@@ -132,7 +139,7 @@ const FormPage = () => {
               name="description"
               value={driverData.description}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               className={error.description && 'warning'}
             />
           </div>
@@ -144,7 +151,7 @@ const FormPage = () => {
               id="image"
               name="image"
               value={driverData.image}
-              autocomplete="off"
+              autoComplete="off"
               onChange={handleChange}
             />
           </div>
@@ -159,7 +166,7 @@ const FormPage = () => {
               name="nationality"
               value={driverData.nationality}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               className={error.nationality && 'warning'}
             />
             <p className='danger'>{error.nationality}</p>
@@ -189,9 +196,6 @@ const FormPage = () => {
               onChange={handleChange}
               multiple
               className={error.teamIds && 'warning'}>
-              <option className='option-team' value="" disabled>
-                Selected Teams:
-              </option>
               {teamsReducer.map((team) => (
                 <option className='option-team' key={team.id} value={team.id}>
                   {team.name}
@@ -199,13 +203,18 @@ const FormPage = () => {
               ))}
             </select>
             <p className='danger'>{error.teamIds}</p>
-            <div className="selectedAndLine">
+            <div className="selectedAndButton">
               <label>Selected Teams:</label>
               <div className='selected'>
-                {driverData.teamIds.map(select => {
-                  const selected = teamsReducer.find(element => element.id === select);
+                {driverData.teamIds.map((select) => {
+                  const selected = teamsReducer.find((element) => element.id === select);
                   if (selected) {
-                    return <span className='span-selected' key={select}>{selected.name}</span>;
+                    return (
+                      <span className='span-selected' key={select}>
+                        <button className='deleteTeam' onClick={() => deleteTeam(select)}>X</button>
+                        {selected.name}
+                      </span>
+                    );
                   }
                 })}
               </div>
