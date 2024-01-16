@@ -7,6 +7,7 @@ import Pagination from '../Pagination/Pagination';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllDrivers } from '../../Redux/actions';
+import SearchBar from '../SearchBar/SearchBar';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -38,13 +39,7 @@ const HomePage = () => {
         <NavBar />
         <Filters />
         <ButtonCreateDriver />
-        <div className="searchBar">
-          <input className='input-serach'
-            title='Search Driver By Name'
-            placeholder="Search Drivers..."
-            type="text"
-            onChange={handleChange} />
-        </div>
+        <SearchBar handleChange={handleChange}/>
       </div>
       <Cards
         inputListener={inputListener}

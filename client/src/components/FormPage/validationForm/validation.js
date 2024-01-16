@@ -1,4 +1,4 @@
-const validation = (fieldName, value, ) => {
+const validation = (fieldName, value,) => {
     const regexName = /^[a-zA-Z\s]+$/;
     const regexLastName = /^[a-zA-Z\s-]+$/;
     const regexNationality = /^[a-zA-Z]+$/;

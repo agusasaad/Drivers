@@ -9,7 +9,7 @@ import NavBar from '../NavBar/NavBar.jsx';
 
 const FormPage = () => {
   const navigate = useNavigate()
-
+  const [messageError, setMessageError] = useState('')
   const [error, setError] = useState({})
   const [driverData, setDriverData] = useState({
     name: "",
@@ -60,12 +60,13 @@ const FormPage = () => {
         dob: ""
       })
 
-
-      navigate('/home')
-
-      window.alert(`Respuesta del servidor: ${data.message}`);
-    } catch (data) {
-      window.alert(`Error al enviar la solicitud: ${data.message}`);
+      if (data && data.message) {
+        setMessageError(data.message)
+      } else {
+        setMessageError(data.error)
+      }
+    } catch (error) {
+      window.alert(`Error del servidor: ${error.message}`)
     }
 
   }
@@ -206,7 +207,7 @@ const FormPage = () => {
             <div className="selectedAndButton">
               <label>Selected Teams:</label>
               <div className='selected'>
-                {driverData.teamIds.map((select) => {
+                {driverData.teamIds?.map((select) => {
                   const selected = teamsReducer.find((element) => element.id === select);
                   if (selected) {
                     return (
@@ -222,6 +223,11 @@ const FormPage = () => {
           </div>
         </div>
         <button className={`form-submit ${todosCamposLlenos ? 'enabled' : ''}`} type="submit" disabled={!todosCamposLlenos}>Create</button>
+        {messageError && (
+          <p className={messageError.includes('existe') ? 'danger' : 'success'}>
+            {messageError}
+          </p>
+        )}
       </form>
     </div>
   )

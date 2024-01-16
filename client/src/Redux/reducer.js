@@ -21,8 +21,9 @@ const reducer = (state = initialState, action) => {
             }
 
         case FILTER_BY_ORIGIN:
-            const originCopy = [...state.filterDrivers]
-            const filterByOrigin = state.allDrivers.filter((origin) => {
+            const originCopy = [...state.allDrivers]
+
+            const filterByOrigin = originCopy.filter((origin) => {
                 if (action.payload === 'All Origins') {
                     return origin
                 } else if (action.payload === 'DataBase') {

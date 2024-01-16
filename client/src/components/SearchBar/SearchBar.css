@@ -1,0 +1,20 @@
+.searchBar {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.input-serach {
+    width: 96%;
+    height: 30px;
+    background-color: rgba(231, 227, 227, 0);
+    border: 1px solid white;
+    padding: 5px;
+    color: white;
+}
+
+.input-serach::placeholder {
+    color: #ffffff9a;
+}

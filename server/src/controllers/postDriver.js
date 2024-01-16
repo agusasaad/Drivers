@@ -12,7 +12,7 @@ const postDriver = async (req, res) => {
         });
 
         if (existingDriver) {
-            return res.status(400).json({ message: 'Ya existe un driver con esa información' });
+            return res.json({ error: 'Ya existe un driver con ese nombre y apellido', code: 'driver_exists' });
         }
 
         const newDriver = await Driver.create({ name, lastName, description, image, nationality, dob });

@@ -255,3 +255,9 @@
     color: rgb(192, 47, 47);
     margin: 5px;
 }
+
+.success{
+    font-size: 10px;
+    color: rgb(30, 147, 231);
+    margin: 5px;
+}
