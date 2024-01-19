@@ -3,6 +3,7 @@
     height: max-content;
     background-image: url('../../../public/img/fondoCards.png');
     background-size: cover;
+    padding-bottom: 140px;
 }
 
 .controllers {

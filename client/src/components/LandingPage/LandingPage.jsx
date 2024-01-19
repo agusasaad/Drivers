@@ -2,14 +2,26 @@ import './LandingPage.css';
 import { useNavigate } from "react-router-dom";
 import NavBar from '../NavBar/NavBar';
 import tituloF1 from '../../../public/img/tituloF1.png';
-// import infoExtra from '../../../public/img/INFO_EXTRA.png';
+import Spinner from '../Spinner/Spinner'
+import { useState } from 'react';
 
 const LandingPage = () => {
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const navigateToHome = () => {
-    navigate('/home');
+    setLoading(true);
+
+    navigate('/spinner')
+
+    setTimeout(() => {
+      setLoading(false);
+      navigate('/home');
+    }, 2000);
   }
+
+
   return (
     <div className='Landing_page'>
       <NavBar />

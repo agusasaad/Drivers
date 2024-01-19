@@ -1,7 +1,6 @@
 const validation = (fieldName, value,) => {
     const regexName = /^[a-zA-Z\s]+$/;
     const regexLastName = /^[a-zA-Z\s-]+$/;
-    const regexNationality = /^[a-zA-Z]+$/;
     const regexDescripcion = /^.{1,750}$/;
     const regexDob = /^\d{4}-\d{2}-\d{2}$/;
     const errors = {};
@@ -13,8 +12,6 @@ const validation = (fieldName, value,) => {
             return regexLastName.test(value) ? '' : 'El apellido del driver no puede contener caracteres especiales';
         case 'description':
             return regexDescripcion.test(value) ? '' : 'La descripción debe tener menos de 750 caracteres';
-        case 'nationality':
-            return regexNationality.test(value) ? '' : 'La nacionalidad no puede contener caracteres especiales';
         case 'dob':
             return regexDob.test(value) ? '' : 'Inserta una fecha válida, por ejemplo: YYYY-MM-DD';
         case 'teamIds':

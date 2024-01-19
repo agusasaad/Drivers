@@ -5,13 +5,11 @@ import { useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 
 const DetailPage = () => {
+
   const defaultPhoto = 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp';
-  const navigate = useNavigate()
-  const backToHome = () => {
-    navigate('/home')
-  }
   const params = useParams();
   const [driverDetail, SetDriverDetail] = useState('')
+
   useEffect(() => {
     const detailId = async () => {
       try {
@@ -25,6 +23,12 @@ const DetailPage = () => {
     }
     detailId()
   }, [params.id])
+
+  const navigate = useNavigate()
+
+  const backToHome = () => {
+    navigate('/home')
+  }
 
 
 

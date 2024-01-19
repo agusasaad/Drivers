@@ -12,35 +12,33 @@
     height: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-left: 50px;
-    margin-left: 60px;
-
+    padding: 50px;
+    margin-left: 50px;
 }
 
 .img_title {
-    width: 600PX;
-    height: 190PX;
+    width: 500PX;
+    height: 150PX;
     margin-bottom: 5px;
 }
 
 .descriptionPage{
     color: white;
-    width: 70%;
+    width: 60%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     text-align: start;
     margin-bottom: 10px;
 }
 
 .button-landing-page {
-    width: 60%;
-    height: 45px;
-    background-color: #8b0202;
+    width: 65%;
+    height: 30px;
+    background-color: #8c0107;
     border: none;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    font-size: 17px;
+    font-size: 13px;
     cursor: pointer;
 }
 

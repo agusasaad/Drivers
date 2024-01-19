@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllTeams, filterTeams, filterByOrigin, filterByOrder, filterByDate, reset_filter } from '../../Redux/actions';
 import './Filters.css'
 
-const Filters = () => {
+const Filters = ({setCurrentPage}) => {
 
     const dispatch = useDispatch();
     const teamsReducer = useSelector((state) => state.allTeams);
@@ -14,19 +14,24 @@ const Filters = () => {
 
     const handleTeams = event => {
         dispatch(filterTeams(event.target.value))
+        setCurrentPage(1)
     }
     const handleOrigin = event => {
         dispatch(filterByOrigin(event.target.value))
+        setCurrentPage(1)
     }
     const handleOrder = event => {
         dispatch(filterByOrder(event.target.value))
+        setCurrentPage(1)
     }
 
     const handleOrderDate = event => {
         dispatch(filterByDate(event.target.value))
+        setCurrentPage(1)
     }
     const handleResetFilters = event => {
         dispatch(reset_filter(event.target.value))
+        setCurrentPage(1)
     }
     return (
         <div className='Filters'>

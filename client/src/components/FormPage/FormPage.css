@@ -132,8 +132,6 @@
     width: 100%;
     height: max-content;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .nationality-birthdate label {
@@ -151,6 +149,22 @@
     color: #fff;
     background-color: transparent;
     border: 1px solid #414141;
+}
+
+.FormNationality {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.optionPaises{
+    margin: 0;
+    padding: 0;
+    width: 99%;
+    height: 26px;
+    color: #848282;
+    background-color: transparent;
+    border: 1px solid #414141; 
 }
 
 .form .teams-selected {
@@ -182,6 +196,7 @@
     width: 100%;
     height: 30vh;
     border: 1px solid rgba(124, 121, 121, 0.521);
+    background-color: #1f1f1f;
 }
 
 .selectGroup .option-team {

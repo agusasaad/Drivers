@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './FormPage.css';
 import validation from './validationForm/validation.js';
+import paises from '../../paises.js';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTeams } from '../../Redux/actions';
@@ -8,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar.jsx';
 
 const FormPage = () => {
+
   const navigate = useNavigate()
   const [messageError, setMessageError] = useState('')
   const [error, setError] = useState({})
@@ -159,18 +161,21 @@ const FormPage = () => {
         </div>
         {/* Nationality AND birthdate */}
         <div className="nationality-birthdate">
-          <div className='FormGroup'>
-            <label htmlFor="nationality">Nationality:</label>
-            <input
-              type="text"
+          <div className='FormNationality'>
+            <label htmlFor="cars">Nationality:</label>
+            <select
+              className='optionPaises'
               id="nationality"
               name="nationality"
               value={driverData.nationality}
-              onChange={handleChange}
-              autoComplete="off"
-              className={error.nationality && 'warning'}
-            />
-            <p className='danger'>{error.nationality}</p>
+              onChange={handleChange}>
+              <option className='option' value="" disabled>Select a country</option>
+              {paises.map((pais, index) => (
+                <option className='option-team' key={index} value={pais}>
+                  {pais}
+                </option>
+              ))}
+            </select>
           </div>
           <div className='FormGroup'>
             <label htmlFor="dob">Date Of Birth:</label>

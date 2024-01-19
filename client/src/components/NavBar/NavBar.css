@@ -1,5 +1,5 @@
 nav {
-    width: 15%;
+    width: 10%;
     height: 15%;
     display: flex;
     justify-content: start;
@@ -11,7 +11,7 @@ nav {
 }
 
 .logoF1 {
-    margin-left: 15px;
     width: 150px;
     height: 100px;
+    padding-left: 15px;
 }

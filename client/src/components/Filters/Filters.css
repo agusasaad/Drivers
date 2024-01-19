@@ -1,5 +1,5 @@
 .Filters {
-    width: 75%;
+    width: 61%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -14,7 +14,7 @@ select {
     color: white;
     font-family: 'Montserrat', sans-serif;
     padding: 5px;
-    font-size: 15px;
+    font-size: 13px;
     margin-left: 15px;
 }
 

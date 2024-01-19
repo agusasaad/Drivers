@@ -1,4 +1,4 @@
-import { FILTER_TEAMS, GET_DRIVERS, GET_TEAMS, FILTER_BY_ORIGIN, FILTER_BY_ORDER, FILTER_BY_DATE, RESET_FILTERS } from "./action-types";
+import { FILTER_TEAMS, GET_DRIVERS, GET_TEAMS, FILTER_BY_ORIGIN, FILTER_BY_ORDER, FILTER_BY_DATE, RESET_FILTERS, DELETE_DRIVER } from "./action-types";
 
 const initialState = {
     allDrivers: [],
@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
             }
 
         case FILTER_TEAMS:
-            const teamsCopy = [...state.filterDrivers]
+            const teamsCopy = [...state.allDrivers]
 
             const filteredDrivers = teamsCopy.filter(driver => {
                 if (Array.isArray(driver.teams)) {
@@ -95,6 +95,14 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 filterDrivers: state.allDrivers
+            }
+        case DELETE_DRIVER:
+            const copyDrivers = [...state.filterDrivers]
+
+            const findDriversDelete = copyDrivers.filter((driver) => driver.id !== action.payload)
+            return {
+                ...state,
+                filterDrivers: findDriversDelete
             }
         default:
             return {

@@ -34,27 +34,27 @@ const HomePage = () => {
   }
 
   return (
-    <div className='Home_Page'>
-      <div className='controllers'>
-        <NavBar />
-        <Filters />
-        <ButtonCreateDriver />
-        <SearchBar handleChange={handleChange}/>
+      <div className='Home_Page'>
+        <div className='controllers'>
+          <NavBar />
+          <Filters setCurrentPage={setCurrentPage} />
+          <ButtonCreateDriver />
+          <SearchBar handleChange={handleChange} />
+        </div>
+        <Cards
+          inputListener={inputListener}
+          driversFilterReducer={driversFilterReducer}
+          driversToShow={driversToShow}
+          setFilteredDrivers={setFilteredDrivers}
+          driversReducer={driversReducer}
+        />
+        <Pagination
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          pageSize={pageSize}
+          totalItems={filteredDrivers.length}
+        />
       </div>
-      <Cards
-        inputListener={inputListener}
-        driversFilterReducer={driversFilterReducer}
-        driversToShow={driversToShow}
-        setFilteredDrivers={setFilteredDrivers}
-        driversReducer={driversReducer}
-      />
-      <Pagination
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-        pageSize={pageSize}
-        totalItems={filteredDrivers.length}
-      />
-    </div>
   )
 }
 
